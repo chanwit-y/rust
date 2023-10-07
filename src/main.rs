@@ -3,29 +3,29 @@ use actix_web::{get,  web, App, HttpServer, Result, HttpRequest};
 //https://actix.rs/docs/request/
 use serde::Deserialize;
 
+// Call api
+// use reqwest;
+// #[derive(Deserialize, Debug)]
+// pub struct Order {
+//     pub id: i64,
+//     pub title: String,
+//     pub body: String,
+//     pub userId: i64,
+// }
+// async fn read_orders() {
+//     let response = reqwest::get("https://jsonplaceholder.typicode.com/posts/1")
+//         .await.unwrap().json::<Order>()
+//         .await;
 
-use reqwest;
-#[derive(Deserialize, Debug)]
-pub struct Order {
-    pub id: i64,
-    pub title: String,
-    pub body: String,
-    pub userId: i64,
-}
-async fn read_orders() {
-    let response = reqwest::get("https://jsonplaceholder.typicode.com/posts/1")
-        .await.unwrap().json::<Order>()
-        .await;
-
-    match response {
-        Ok(order) => {
-            println!("Processing order response");
-        }
-        Err(e) => {
-            println!("Orders API response cannot be parsed! {}", e)
-        }
-    };
-}
+//     match response {
+//         Ok(order) => {
+//             println!("Processing order response");
+//         }
+//         Err(e) => {
+//             println!("Orders API response cannot be parsed! {}", e)
+//         }
+//     };
+// }
 
 
 // #[actix_web::main]
@@ -96,7 +96,7 @@ async fn index(info: web::Query<Info>) -> String {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    read_orders().await;
+    // read_orders().await;
     HttpServer::new(|| App::new().service(index))
     .bind(("127.0.0.1", 8080))?
     .run()
